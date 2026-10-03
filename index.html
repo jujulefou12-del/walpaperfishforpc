@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aquarium Tropical — Fond d'écran animé</title>
+<meta name="description" content="Aquarium tropical d'eau douce photoréaliste en temps réel. Utilisable comme fond d'écran animé (Lively Wallpaper / WebView).">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="wallpaper-mode">
+  <!-- Canvas WebGL unique : scène complète (fond, couches, poisson procedural,
+       eau, caustiques, god-rays, surface, distorsion souris, vignette, grain optique) -->
+  <canvas id="gl"></canvas>
+
+  <!-- Voile de colorimétrie "caméra" (très léger, non cinématique) -->
+  <div id="grade"></div>
+
+  <!-- Panneau de configuration (caché, Ctrl+Shift+A) -->
+  <aside id="panel" aria-hidden="true">
+    <header>
+      <h1>Aquarium — Réglages</h1>
+      <button id="panel-close" title="Fermer (Ctrl+Shift+A)">✕</button>
+    </header>
+    <div class="grp">
+      <label>Rendu</label>
+      <select id="s-quality">
+        <option value="ultra">Ultra</option>
+        <option value="high">High</option>
+        <option value="medium">Medium</option>
+        <option value="low">Low</option>
+        <option value="auto" selected>Auto (adaptatif)</option>
+      </select>
+      <div class="row"><span>Qualité active</span><b id="q-active">—</b></div>
+      <div class="row"><span>FPS</span><b id="q-fps">—</b></div>
+    </div>
+    <div class="grp">
+      <label>Faune</label>
+      <div class="slider"><span>Poissons</span><input type="range" id="s-fishCount" min="6" max="60" step="1"><b></b></div>
+      <div class="slider"><span>Vitesse des poissons</span><input type="range" id="s-fishSpeed" min="0.3" max="2" step="0.05"><b></b></div>
+    </div>
+    <div class="grp">
+      <label>Eau &amp; lumière</label>
+      <div class="slider"><span>Intensité du courant</span><input type="range" id="s-current" min="0" max="2" step="0.05"><b></b></div>
+      <div class="slider"><span>Intensité lumineuse</span><input type="range" id="s-light" min="0.3" max="1.8" step="0.05"><b></b></div>
+      <div class="slider"><span>Caustiques</span><input type="range" id="s-caustics" min="0" max="2" step="0.05"><b></b></div>
+      <div class="slider"><span>Bulles</span><input type="range" id="s-bubbles" min="0" max="2.5" step="0.05"><b></b></div>
+      <div class="slider"><span>Particules</span><input type="range" id="s-particles" min="0" max="2" step="0.05"><b></b></div>
+      <div class="slider"><span>Profondeur de champ</span><input type="range" id="s-dof" min="0" max="1.5" step="0.05"><b></b></div>
+    </div>
+    <div class="grp">
+      <label>Comportement</label>
+      <div class="slider"><span>Fréquence nourrissage (min)</span><input type="range" id="s-feedEvery" min="1" max="30" step="0.5"><b></b></div>
+      <div class="check"><input type="checkbox" id="s-mouse" checked><label for="s-mouse">Interaction souris</label></div>
+      <div class="check"><input type="checkbox" id="s-daynight" checked><label for="s-daynight">Cycle jour/nuit</label></div>
+      <div class="check"><input type="checkbox" id="s-sound"><label for="s-sound">Son (désactivé par défaut)</label></div>
+    </div>
+    <footer>Ctrl+Shift+A · F = nourrir maintenant · W = mode wallpaper</footer>
+  </aside>
+
+  <!-- Scripts (modules ES, ordre garanti par le graphe d'imports) -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
